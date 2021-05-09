@@ -6,9 +6,7 @@ import json
 import requests
 import whois
 
-
 app = Flask(__name__)
-
 
 injections_list = ["GenericBlind", "Generic_ErrorBased", "Generic_SQLI", "Generic_TimeBased", "Generic_UnionSelect"]
 
@@ -20,15 +18,13 @@ def payload_returner(injection):
     return response
 
 
-
-
-
 @app.route('/check', methods=['POST'])
 def check_stuff():
     if 'http' in str(request.get_data()) and '://' in str(request.get_data()) and '.' in str(request.get_data()):
         return '{}'.format(str(check(request.get_data().decode())))
     else:
         return 'url syntax'
+
 
 @app.route('/', methods=["GET", "POST"])
 def index():
@@ -37,6 +33,15 @@ def index():
     else:
         mytext = requests.post('http://127.0.0.1:5000/check', data=str(request.form['website-url'])).text
         return render_template('result.html', result=mytext)
+
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
 
 try:
     app.run()

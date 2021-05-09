@@ -146,11 +146,3 @@ for each_el in responses_sql:
     except:
         setup['adminer'] = False
     return setup
-
-
-s1 = "testestestest"
-s2 = "marti"
-
-
-s1 = s1.replace(s1[0:len(s2)], s2, 1)
-print(s1)
