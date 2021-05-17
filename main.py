@@ -49,6 +49,15 @@ def index():
         mytext = requests.post('http://127.0.0.1:5000/check', data=str(request.form['website-url'])).text
         return render_template('result.html', result=mytext)
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+
 try:
     app.run()
 except Exception as error:

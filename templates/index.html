@@ -15,21 +15,40 @@
   <link rel="stylesheet" href="/static/css/dark-mode.css">
   <!-- Custom styles for this template -->
   <link href="/static/css/landing-page.min.css" rel="stylesheet">
+
 </head>
 
 <body>
 
-  <!-- Navigation -->
-  <nav class="navbar bg-light static-top">
-    <div class="container">
-      <a href="/">
+
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <a href="/">
       <h1 class="navbar-brand text-primary">pmData</h1>
     </a>
-      <div class="custom-control custom-switch">
-        <input type="checkbox" class="custom-control-input" id="darkSwitch">
-        <label class="custom-control-label" for="darkSwitch">Dark Mode</label>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link text-primary" href="/about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-primary" href="/contact">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-primary" href="/login">Login</a>
+          </li>
+          <li class="nav-item px-5">
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="darkSwitch">
+              <label class="custom-control-label" for="darkSwitch">Dark Mode</label>
+            </div>
+          </li>
+        </ul>
       </div>
-    </div>
   </nav>
 
   <!-- Masthead -->
