@@ -1,15 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>pmData</title>
+  <!-- Bootstrap core CSS -->
+  <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom fonts for this template -->
+  <link href="static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="static/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="static/css/dark-mode.css">
+  <!-- Custom styles for this template -->
+  <link href="static/css/landing-page.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <a href="/">
+      <h1 class="navbar-brand text-primary">pmData</h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link text-primary" href="/about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-primary" href="/contact">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-primary" href="/login">Login</a>
+          </li>
+          <li class="nav-item px-5">
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="darkSwitch">
+              <label class="custom-control-label" for="darkSwitch">Dark Mode</label>
+            </div>
+          </li>
+        </ul>
+      </div>
+  </nav>
+
 <form action="/login" method="post">
     <div class="container">
       <label for="username"><b>Username</b></label>
       <input type="username" placeholder="Enter Username" name="username" required>
-
+      <br >
       <label for="email"><b>Email</b></label>
       <input type="text" placeholder="Enter Username" name="email" required>
-  
+      <br >
       <label for="password"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="password" required>
-
+      <br >
       <button type="submit">Login</button>
       <h1> {{ message }}</h1>
     </div>
   </form>
+
+
+
+
+   <!-- Footer -->
+   <footer class="footer bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+          <ul class="list-inline mb-2">
+            <li class="list-inline-item">
+              <a href="/about">About</a>
+            </li>
+            <li class="list-inline-item">&sdot;</li>
+            <li class="list-inline-item">
+              <a href="/contact">Contact</a>
+            </li>
+            <li class="list-inline-item">&sdot;</li>
+            <li class="list-inline-item">
+              <a href="#">Terms of Use</a>
+            </li>
+            <li class="list-inline-item">&sdot;</li>
+            <li class="list-inline-item">
+              <a href="#">Privacy Policy</a>
+            </li>
+          </ul>
+          <p class="text-muted small mb-4 mb-lg-0">&copy; pmData 2021. All Rights Reserved.</p>
+        </div>
+        <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item mr-3">
+              <a href="#">
+                <i class="fab fa-facebook fa-2x fa-fw"></i>
+              </a>
+            </li>
+            <li class="list-inline-item mr-3">
+              <a href="#">
+                <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://instagram.com/extremedevalt">
+                <i class="fab fa-instagram fa-2x fa-fw"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="static/vendor/jquery/jquery.min.js"></script>
+  <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="static/js/dark-mode-switch.min.js"></script>
+
+</body>
+</html>
+
