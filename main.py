@@ -114,6 +114,10 @@ def about():
 def contact():
     return render_template('contact.html')
 
+@app.route('/dashboard')
+def dash():
+    return render_template('dashboard.html')
+
 
 try:
     app.run()
