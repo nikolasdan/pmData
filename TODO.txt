@@ -1,0 +1,16 @@
+Frontend:
+-Dashboard: -username
+            -rol (premium, gratis)
+-TOS page
+-PP page
+
+Backend:
+-sesiune
+-cms
+-others
+-rol 
+-API rol
+
+Database:
+-rol
+-sesiune

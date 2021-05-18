@@ -33,7 +33,6 @@ def login():
     if request.method == 'GET':
         return render_template('login.html')
     else:
-        print(str(request.get_data()))
         f = login_apis(username=request.form['username'], password=request.form['password'], email=request.form['email'])
         if f == 200:
             return render_template('dashboard.html', user=request.form['username'], role=get_role(request.form['email']))
@@ -57,51 +56,6 @@ def check_stuff():
     else:
         return 'url syntax'
 
-
-"""
-    setup = {
-        "search": "",
-        "http": "",
-        "name": "",
-        "subdomain": "",
-        "domain_ends": "",
-        "parameters": [],
-        "db": "",
-        "os": "",
-        "emails": [],
-        "passwords": [],
-        "usernames": [],
-        "other-data": [],
-        "url": url,
-        "adminer": False,
-        "adminer-version": "unknown",
-        "injection-type": "unknown",
-        "injected-url": "unknown",
-        "xss": False,
-        'xss-url': ""
-    }
-"""
-
-"""
-{"search": "/cat_podrobno2.php?id=3&main_category_id=6&category_id=7", 
-"http": "https", 
-"name": "zelenastrandja", 
-"subdomain": "www", 
-"domain_ends": "com", 
-"parameters": [], 
-"db": "", 
-"os": "", 
-"emails": [], 
-"passwords": [], 
-"usernames": [], 
-"other-data": [], 
-"url": "https://www.zelenastrandja.com/cat_podrobno2.php?id=3&main_category_id=6&category_id=7", 
-"adminer": False, 
-"adminer-version": "unknown",
-"injection-type": "Generic_SQLI", 
-"injected-url": "https://www.zelenastrandja.com/cat_podrobno2.php?id=3&main_category_id=6&category_id=7(sqlattempt2)", 
-"xss": True, 
-"xss-url": "https://www.zelenastrandja.com/cat_podrobno2.php?id=3&main_category_id=6&category_id=%22%3E%3Cscript%3Ealert(%27XSS%27)%3C/script%3E"}"""
 @app.route('/', methods=["GET", "POST"])
 def index():
     if request.method == "GET":
@@ -109,7 +63,7 @@ def index():
     else:
         mytext = requests.post('http://127.0.0.1:5000/check', data=str(request.form['website-url']))
         stuff = mytext.text.replace("'", '"')
-        email_info = Message('Results', sender = app.config['MAIL_USERNAME'], recipients = ['lucian.volanschi29@yahoo.com']);email_info.body = render_template(
+        email_info = Message('Results', sender = app.config['MAIL_USERNAME'], recipients = [request.form['email']]);email_info.body = render_template(
             'mail_results.html', 
             sql_bool='True' if re.search('"injected-url": "(.*?)"', str(stuff)).group(1) != 'unknown' else 'False',
             xss_bool=re.search('"xss": (.*?),', str(stuff)).group(1),

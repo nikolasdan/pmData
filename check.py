@@ -117,7 +117,6 @@ for each_el in responses_sql:
         )
         if setup['injection-type'] != 'unknown':
             break
-    print(setup['url'])
     try:
         url = setup['url']
         url = url.replace(setup['url'][setup['url'].rfind('=')+1], '%22%3E%3Cscript%3Ealert(%27XSS%27)%3C/script%3E')
