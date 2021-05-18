@@ -1,5 +1,7 @@
-import requests
+import requests, json
 
-print(requests.post('http://127.0.0.1:5000/login', data='testzzzzgeasgaegfaegfae:69ss').text)
+mytext = requests.post('http://127.0.0.1:5000/check', data=str('https://test.com/teastaegfae'))
 
-input()
+import re
+print(json.loads(mytext.text.replace("'", "\"").replace('None', 'null').replace('False', 'false').replace('True', 'true'))['search'])
+ 

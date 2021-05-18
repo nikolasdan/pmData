@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Account Activation Required</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1">
+	</head>
+	<body style="background-color:#F5F6F8;font-family:-apple-system, BlinkMacSystemFont, 'segoe ui', roboto, oxygen, ubuntu, cantarell, 'fira sans', 'droid sans', 'helvetica neue', Arial, sans-serif;box-sizing:border-box;font-size:16px;">
+		<div style="padding:60px;background-color:#fff;margin:60px;text-align:center;box-sizing:border-box;font-size:16px;">
+			<h1>Hey! you just used your free trial of pmData. The results are listed down below:</h1>
+			<p>&nbsp;</p>
+			<h2><em><strong>Information:</strong></em></h2>
+			<ol>
+			<li><strong>SQL Injection: {{ sql_bool }}</strong></li>
+			<li><strong>XSS Injection: {{ xss_bool }}</strong></li>
+			<li><strong>Adminer.php: {{ adminer_bool }}</strong></li>
+			<li><strong>CMS: {{ cms_bool }}</strong></li>
+			<li><strong>Captcha: {{ captcha_bool }}</strong></li>
+			<li><strong>Protection: {{ protection_bool }}</strong></li>
+			<li><strong>CSRF: {{ csrf_bool }}</strong></li>
+			<li><strong>Ports: {{ ports_bool }}</strong></li>
+			<li><strong>Hackable: {{ hackable_bool }}&nbsp;</strong></li>
+			<li><strong>Subdomains: {{ subdomains_bool }}</strong></li>
+			</ol>
+			<h2><em><strong>Some additional information we extracted:</strong></em></h2>
+			<ol>
+			<li><em><strong>SQL Url: {{ sql_url }}</strong></em></li>
+			<li><em><strong>XSS Url: {{ xss_url }}</strong></em></li>
+			<li><em><strong>Adminer Version: {{ adminer_url }}</strong></em></li>
+			<li><em><strong>CMS: {{ cms_name }}</strong></em></li>
+			<li><em><strong>Ports: {{ ports }}</strong></em></li>
+			<li><em><strong>NMAP: {{ nmap_report }}</strong></em></li>
+			<li><em><strong>WHOIS: {{ whois_report }}</strong></em></li>
+			</ol>
+		</div>
+	</body>
+</html>

@@ -45,7 +45,7 @@ def check(url=None):
         "injection-type": "unknown",
         "injected-url": "unknown",
         "xss": False,
-        'xss-url': ""
+        "xss-url": ""
     }
 
     sql_payloads = {
@@ -99,7 +99,6 @@ def check(url=None):
             if each != search[0][1].split('.')[len(search[0][1].split('.'))-1] and each != search[0][1].split('.')[len(search[0][1].split('.'))-2]:
                 setup['subdomain']+=str(each)+'.'
         setup['subdomain'] = setup['subdomain'][:len(setup['subdomain'])-1]
-    setup['whois'] = whois.whois(url)
 
     url_to_check = url.split(setup['search'])[0]
 
