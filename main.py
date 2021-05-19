@@ -14,8 +14,8 @@ app = Flask(__name__)
 
 app.config['MAIL_SERVER']= 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'extremedevalt@gmail.com'
-app.config['MAIL_PASSWORD'] = 'TG)-DAu^4s7q-5I)6P#T*C_R1p3t@x98'
+app.config['MAIL_USERNAME'] = 'pmdata.contact@gmail.com'
+app.config['MAIL_PASSWORD'] = '39?ZTxVdG?-yD9CN+^Ny@xcD'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 
@@ -24,8 +24,8 @@ mail = Mail(app)
 injections_list = ["GenericBlind", "Generic_ErrorBased", "Generic_SQLI", "Generic_TimeBased", "Generic_UnionSelect"]
 
 config = {
-    "email": "extremedevalt@gmail.com",
-    "password": "TG)-DAu^4s7q-5I)6P#T*C_R1p3t@x98"
+    "email": "pmdata.contact@gmail.com",
+    "password": "39?ZTxVdG?-yD9CN+^Ny@xcD"
 }
 
 @app.route('/login', methods=["POST", "GET"])
