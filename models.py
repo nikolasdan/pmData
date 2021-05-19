@@ -11,8 +11,8 @@ def login_apis(email, password, username):
     cursor = db_connection.cursor()
     cursor.execute("select database();")
     database_name = cursor.fetchone()
-    cursor.execute("create database if not exists vv")
-    cursor.execute("use vv")
+    cursor.execute("create database if not exists pm")
+    cursor.execute("use pm")
     cursor.execute("""create table if not exists accounts (
         `email` varchar(255) not null,
         `username` varchar(255) not null,
@@ -41,8 +41,8 @@ def get_role(email):
     cursor = db_connection.cursor()
     cursor.execute("select database();")
     database_name = cursor.fetchone()
-    cursor.execute("create database if not exists vv")
-    cursor.execute("use vv")
+    cursor.execute("create database if not exists db")
+    cursor.execute("use pm")
     cursor.execute("""create table if not exists accounts (
         `email` varchar(255) not null,
         `username` varchar(255) not null,
