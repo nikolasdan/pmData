@@ -14,7 +14,6 @@ In a world addicted to speed, we test the security of your websites with the utm
 
 ### Built With
 
-pmData is built with:
 * [Bootstrap](https://getbootstrap.com)
 * [Flask](https://flask.palletsprojects.com/en/2.0.x/)
 * [Python](https://www.python.org/)
