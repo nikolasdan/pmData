@@ -12,6 +12,9 @@ from flask_mail import Mail, Message
 
 app = Flask(__name__)
 
+# logging with this account without our consent will be reported
+# for those reviewing this code, we suggest not to log in
+
 app.config['MAIL_SERVER']= 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = 'pmdata.contact@gmail.com'
