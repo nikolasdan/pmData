@@ -48,6 +48,9 @@ def payload_returner(injection):
     response.mimetype = "text/plain"
     return response
 
+@app.route('/terms_of_service', methods=["GET"])
+def terms_of_service():
+    return render_template('terms_of_service.html')
 
 @app.route('/check', methods=['POST'])
 def check_stuff():
@@ -106,6 +109,14 @@ def index():
         mail.send(email_info)
         return render_template('result.html')
 
+@app.route('/user/<name>', methods=["GET"])
+def user_profile(name):
+    f = get_user(name)
+    if f is None:
+        return render_template_string('UNKNOWN')
+    else:
+        return render_template_string('Username: {} | Role: {}'.format(str(name), str(f)))
+
 @app.route('/about')
 def about():
     return render_template('about.html')
@@ -118,8 +129,11 @@ def contact():
 def dash():
     return render_template('dashboard.html')
 
+@app.route('/privacy')
+def privacy():
+    return render_template('privacy.html')
 
 try:
-    app.run()
+    app.run(debug=True)
 except Exception as error:
     print(error)
