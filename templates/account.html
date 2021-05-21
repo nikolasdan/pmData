@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>pmData</title>
+  <!-- Bootstrap core CSS -->
+  <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom fonts for this template -->
+  <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="/static/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/static/css/dark-mode.css">
+  <!-- Custom styles for this template -->
+  <link href="/static/css/landing-page.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/account.css">
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <a href="/">
+    <h1 class="navbar-brand text-primary">pmData</h1>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span><img src="static/img/bmenu.svg" class="bmenu" alt=""></span>
+  </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link text-primary" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-primary" href="/contact">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-primary" href="/login">Login</a>
+        </li>
+        <li class="nav-item px-5">
+          <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="darkSwitch">
+            <label class="custom-control-label" for="darkSwitch">Dark Mode</label>
+          </div>
+        </li>
+      </ul>
+    </div>
+</nav>
+
+<!-- End of Navbar -->
+<div class="container">
+  <div class="row gutters">
+    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="account-settings">
+            <div class="user-profile">
+              <div class="user-avatar">
+                <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.CzXGij1NaAy5LLNUbvw5hwHaHa%26pid%3DApi&f=1" alt="user-avatar">
+              </div>
+              <h5 class="user-name text-white">{{ user }}</h5>
+              <h6 class="user-email text-white">{{ email }} user@email.com</h6>
+            </div>
+            <div class="about">
+              <h5 class="mb-2 text-primary">Account balance</h5>
+              <p class="text-white">$ {{ balance }} 30</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="row gutters">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+              <div class="text-center text-white">
+                <h1>Account type: {{ account_type }} Premium</h1>
+                <button type="button" id="submit" name="submit" class="btn btn-primary">Add balance</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+<!-- Footer -->
+<footer class="footer bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+        <ul class="list-inline mb-2">
+          <li class="list-inline-item">
+            <a href="/about">About</a>
+          </li>
+          <li class="list-inline-item">&sdot;</li>
+          <li class="list-inline-item">
+            <a href="/contact">Contact</a>
+          </li>
+          <li class="list-inline-item">&sdot;</li>
+          <li class="list-inline-item">
+            <a href="/terms_of_service">Terms of Service</a>
+          </li>
+          <li class="list-inline-item">&sdot;</li>
+          <li class="list-inline-item">
+              <a href="/privacy">Privacy Policy</a>
+          </li>
+          </ul>
+          <p class="text-muted small mb-4 mb-lg-0">&copy; pmData 2021. All Rights Reserved.</p>
+      </div>
+      <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+        <ul class="list-inline mb-0">
+          <li class="list-inline-item mr-3">
+            <a href="#">
+              <i class="fab fa-facebook fa-2x fa-fw"></i>
+            </a>
+          </li>
+          <li class="list-inline-item mr-3">
+            <a href="#">
+              <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a href="#">
+              <i class="fab fa-instagram fa-2x fa-fw"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </footer>
+<!-- End of Footer -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="/static/vendor/jquery/jquery.min.js"></script>
+  <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/js/dark-mode-switch.min.js"></script>
+</body>
+</html>
+

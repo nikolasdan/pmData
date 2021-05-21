@@ -38,7 +38,7 @@ def login():
     else:
         f = login_apis(username=request.form['username'], password=request.form['password'], email=request.form['email'])
         if f == 200:
-            return render_template('dashboard.html', user=request.form['username'], role=get_role(request.form['email']))
+            return render_template('account.html', user=request.form['username'], role=get_role(request.form['email']))
         elif f == 526:
             return render_template('login.html', message='CREATED')
         else:
@@ -135,6 +135,10 @@ def dash():
 @app.route('/privacy')
 def privacy():
     return render_template('privacy.html')
+
+@app.route('/account')
+def account():
+    return render_template('account.html')
 
 try:
     app.run(debug=True)

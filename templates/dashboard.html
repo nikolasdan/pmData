@@ -29,6 +29,12 @@
     .custom-bar {
       height: 650px !important;
     }
+    .bg-panel {
+      background-color: #11154b !important;
+    }
+    .dash:hover {
+      color: #ffe345 !important;
+    }
   </style>
 </head>
 
@@ -66,26 +72,26 @@
 <body>
   <div class="container-fluid">
     <div class="row flex-nowrap">
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white vh-auto custom-bar">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-panel">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white vh-auto custom-bar ">
                 <a href="" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                    <span class="fs-5 d-none d-sm-inline">Admin panel</span>
+                    <span class="fs-5 d-none d-sm-inline text-warning"><strong>Admin panel</strong></span>
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
                         <a href="" class="nav-link align-middle px-0">
-                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Users</span>
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline text-white dash">Users</span>
                         </a>
                     </li>
                     <li>
                         <a href="" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Overview</span> </a>
+                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline text-white dash">Overview</span> </a>
                         <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="" class="nav-link px-0"> <span class="d-none d-sm-inline">Balance</span></a>
+                                <a href="" class="nav-link px-0"> <span class="d-none d-sm-inline text-white dash">Balance</span></a>
                             </li>
                             <li>
-                                <a href="" class="nav-link px-0"> <span class="d-none d-sm-inline">Activity</span></a>
+                                <a href="" class="nav-link px-0"> <span class="d-none d-sm-inline text-white dash">Activity</span></a>
                             </li>
                         </ul>
                     </li>
@@ -93,7 +99,7 @@
             </div>
         </div>
         <div class="col py-3">
-          <h1>Hello {{ user }}</h1>
+          <h1>Howdy {{ user }}</h1>
           {% block content %}
               {% if role == 'Admin' %}
                   <h1>Your role is ADMIN</h1>
