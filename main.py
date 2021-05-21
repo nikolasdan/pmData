@@ -14,7 +14,6 @@ app = Flask(__name__)
 
 # logging with this account without our consent will be reported
 # for those reviewing this code, we suggest not to log in
-# the log in can be traced
 
 app.config['MAIL_SERVER']= 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
@@ -45,7 +44,6 @@ def login():
         else:
             return render_template('login.html', message='BAD')
         
-
 @app.route('/injections/<injection>', methods=["GET"])
 def payload_returner(injection):
     response = make_response(str(open('injections/{0}.txt'.format(str(injection)), 'r', encoding='utf-8').read()), 200)
@@ -140,6 +138,14 @@ def privacy():
 @app.route('/account')
 def account():
     return render_template('account.html')
+
+@app.route('/profile/<user>/update_type', methods=["POST"])
+def update_account(user):
+    return render_template_string(change_role(user, request.get_data().decode()))
+
+@app.route('/admin/<user>', methods=["POST"])
+def admin_user(user):
+    return render_template_string(adminer_test(user, request.get_data().decode()))
 
 try:
     app.run(debug=True)
