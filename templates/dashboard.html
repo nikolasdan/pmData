@@ -27,7 +27,7 @@
   width: 100% !important;
   }
     .custom-bar {
-      height: 750px !important;
+      height: 650px !important;
     }
     .bg-panel {
       background-color: #11154b !important;
@@ -74,7 +74,7 @@
     <div class="row flex-nowrap">
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-panel">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white vh-auto custom-bar ">
-                <a href="" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none">
+                <a href="" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <span class="fs-5 d-none d-sm-inline text-warning"><strong>Admin panel</strong></span>
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
@@ -99,13 +99,12 @@
             </div>
         </div>
         <div class="col py-3">
-          <h1>Howdy {{ user }}  {{ mail }}</h1>
+          <h1>Howdy {{ user }}</h1>
           {% block content %}
               {% if role == 'Admin' %}
                   <h1>Your role is ADMIN</h1>
               {% endif %}
           {% endblock content %}
-          <p>*the dashboard page is still in beta, it may not function well</p>
         </div>
     </div>
 </div>
