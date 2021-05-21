@@ -14,6 +14,7 @@ app = Flask(__name__)
 
 # logging with this account without our consent will be reported
 # for those reviewing this code, we suggest not to log in
+# the log in can be traced
 
 app.config['MAIL_SERVER']= 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
