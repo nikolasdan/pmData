@@ -112,7 +112,7 @@ def index():
         mail.send(email_info)
         return render_template('result.html')
 
-@app.route('/user/<name>', methods=["GET"])
+@app.route('/profile/<name>', methods=["GET"])
 def user_profile(name):
     f = get_user(name)
     if f is None:
@@ -124,7 +124,7 @@ def user_profile(name):
 def about():
     return render_template('about.html')
 
-@app.route('/contact')
+@app.route('/contact') 
 def contact():
     return render_template('contact.html')
 

@@ -13,19 +13,14 @@ def login_apis(email, password, username):
     database_name = cursor.fetchone()
     cursor.execute("create database if not exists pm")
     cursor.execute("use pm")
-    cursor.execute("""create table if not exists accounts (
-        `email` varchar(255) not null,
-        `username` varchar(255) not null,
-        `password` varchar(255) not null,
-        `role` enum('Member','Admin') NOT NULL DEFAULT 'Member'
-        )""")
-    cursor.execute("""SELECT password FROM ACCOUNTS WHERE email = '{}' AND username = '{}';""".format(str(email), str(username)))
+    cursor.execute("""create table if not exists accounts (`email` varchar(255) not null,`username` varchar(255) not null,`password` varchar(255) not null,`role` enum('Member','Admin') NOT NULL DEFAULT 'Member')""")
+    cursor.execute("""SELECT password FROM accounts WHERE email = '{}' AND username = '{}';""".format(str(email), str(username)))
     if str(cursor.fetchall()).startswith('[]'):
         cursor.execute("""insert into accounts (email, password, username) values (%s, %s, %s)""", params=(email, password, username))
         db_connection.commit()
         return 526
     else:
-        cursor.execute("""SELECT EMAIL, PASSWORD, USERNAME FROM ACCOUNTS WHERE EMAIL = '{}' AND PASSWORD = '{}' AND USERNAME = '{}';""".format(email, password, username))
+        cursor.execute("""SELECT EMAIL, PASSWORD, USERNAME FROM accounts WHERE EMAIL = '{}' AND PASSWORD = '{}' AND USERNAME = '{}';""".format(email, password, username))
         if str(cursor.fetchall()) == '[]':
             return 400
         else:
@@ -49,7 +44,7 @@ def get_role(email):
         `password` varchar(255) not null,
         `role` enum('Member','Admin') NOT NULL DEFAULT 'Member'
         )""")
-    cursor.execute("""SELECT role FROM ACCOUNTS WHERE email = '{}';""".format(str(email)))
+    cursor.execute("""SELECT role FROM accounts WHERE email = '{}';""".format(str(email)))
     return str(cursor.fetchall()).split('[(\'')[1].split('\'')[0]
 
 def get_user(user):
@@ -70,7 +65,7 @@ def get_user(user):
         `password` varchar(255) not null,
         `role` enum('Member','Admin') NOT NULL DEFAULT 'Member'
         )""")
-    cursor.execute("""SELECT role FROM ACCOUNTS WHERE username = '{}';""".format(str(user)))
+    cursor.execute("""SELECT role FROM accounts WHERE username = '{}';""".format(str(user)))
     g = str(cursor.fetchall())
     if g == '[]':
         return None
