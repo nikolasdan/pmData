@@ -14,7 +14,6 @@ app = Flask(__name__)
 
 # logging with this account without our consent will be reported
 # for those reviewing this code, we suggest not to log in
-# the log in can be traced
 
 app.config['MAIL_SERVER']= 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
@@ -39,11 +38,11 @@ def login():
     else:
         f = login_apis(username=request.form['username'], password=request.form['password'], email=request.form['email'])
         if f == 200:
-            return render_template('account.html', user=request.form['username'], role=get_role(request.form['email']))
+            return render_template('account.html', balance=balance(request.form['email']), account_type = get_role(request.form['email']), email=request.form['email'], user=request.form['username'])
         elif f == 526:
-            return render_template('login.html', message='CREATED')
+            return render_template('login.html', message='You created your account with success!')
         else:
-            return render_template('login.html', message='BAD')
+            return render_template('login.html', message='Your credentials are invalid!')
         
 @app.route('/injections/<injection>', methods=["GET"])
 def payload_returner(injection):
@@ -74,40 +73,39 @@ def index():
             sql_bool='True' if re.search('"injected-url": "(.*?)"', str(stuff)).group(1) != 'unknown' else 'False',
             xss_bool=re.search('"xss": (.*?),', str(stuff)).group(1),
             adminer_bool=re.search('"adminer": (.*?),', str(stuff)).group(1),
-            cms_bool=re.search('"xss": (.*?),', str(stuff)).group(1),
-            captcha_bool =re.search('"xss": (.*?),', str(stuff)).group(1),
-            protection_bool = re.search('"xss": (.*?),', str(stuff)).group(1),
-            csrf_bool=re.search('"xss": (.*?),', str(stuff)).group(1),
-            ports_bool=re.search('"xss": (.*?),', str(stuff)).group(1),
-            hackable_bool=re.search('"xss": (.*?),', str(stuff)).group(1),
-            subdomains_bool=re.search('"xss": (.*?),', str(stuff)).group(1),
+            cms_bool='unknown',
+            captcha_bool ='unknown',
+            protection_bool = 'unknown',
+            csrf_bool='unknown',
+            ports_bool='unknown',
+            hackable_bool='unknown',
+            subdomains_bool='unknown',
 
             sql_url=re.search('"injected-url": "(.*?)"', str(stuff)).group(1),
             xss_url=re.search('"xss-url": "(.*?)"', str(stuff)).group(1),
             adminer_url=re.search('"adminer-version": "(.*?)"', str(stuff)).group(1),
-            cms_name=re.search('"injected-url": "(.*?)"', str(stuff)).group(1),
-            ports=re.search('"injected-url": "(.*?)"', str(stuff)).group(1),
-            nmap_report=re.search('"injected-url": "(.*?)"', str(stuff)).group(1),
-            whois_report=str(whois.whois(re.search('"name": "(.*?)"', str(stuff)).group(1) + re.search('"domain_ends": "(.*?)"', str(stuff)).group(1)))
-            );email_info.html = render_template(
+            cms_name='unknown',
+            ports='unknown',
+            nmap_report='unknown',
+            whois_report=str(whois.whois(re.search('"name": "(.*?)"', str(stuff)).group(1) + re.search('"domain_ends": "(.*?)"', str(stuff)).group(1))));email_info.html = render_template(
             'mail_results.html', 
             sql_bool='True' if re.search('"injected-url": "(.*?)"', str(stuff)).group(1) != 'unknown' else 'False',
             xss_bool=re.search('"xss": (.*?),', str(stuff)).group(1),
             adminer_bool=re.search('"adminer": (.*?),', str(stuff)).group(1),
-            cms_bool=re.search('"xss": (.*?),', str(stuff)).group(1),
-            captcha_bool =re.search('"xss": (.*?),', str(stuff)).group(1),
-            protection_bool = re.search('"xss": (.*?),', str(stuff)).group(1),
-            csrf_bool=re.search('"xss": (.*?),', str(stuff)).group(1),
-            ports_bool=re.search('"xss": (.*?),', str(stuff)).group(1),
-            hackable_bool=re.search('"xss": (.*?),', str(stuff)).group(1),
-            subdomains_bool=re.search('"xss": (.*?),', str(stuff)).group(1),
+            cms_bool='unknown',
+            captcha_bool ='unknown',
+            protection_bool = 'unknown',
+            csrf_bool='unknown',
+            ports_bool='unknown',
+            hackable_bool='unknown',
+            subdomains_bool='unknown',
 
             sql_url=re.search('"injected-url": "(.*?)"', str(stuff)).group(1),
             xss_url=re.search('"xss-url": "(.*?)"', str(stuff)).group(1),
             adminer_url=re.search('"adminer-version": "(.*?)"', str(stuff)).group(1),
-            cms_name=re.search('"injected-url": "(.*?)"', str(stuff)).group(1),
-            ports=re.search('"injected-url": "(.*?)"', str(stuff)).group(1),
-            nmap_report=re.search('"injected-url": "(.*?)"', str(stuff)).group(1),
+            cms_name='unknown',
+            ports='unknown',
+            nmap_report='unknown',
             whois_report=str(whois.whois(re.search('"name": "(.*?)"', str(stuff)).group(1) + re.search('"domain_ends": "(.*?)"', str(stuff)).group(1))))
         mail.send(email_info)
         return render_template('result.html')

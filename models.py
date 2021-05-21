@@ -14,8 +14,8 @@ def login_apis(email, password, username):
     cursor = db_connection.cursor()
     cursor.execute("select database();")
     database_name = cursor.fetchone()
-    cursor.execute("create database if not exists pm")
-    cursor.execute("use pm")
+    cursor.execute("create database if not exists testinggg")
+    cursor.execute("use testinggg")
     cursor.execute("""create table if not exists accounts (
         `email` varchar(255) not null,
         `username` varchar(255) not null,
@@ -24,9 +24,9 @@ def login_apis(email, password, username):
         `account_type` char(255) NOT NULL,
         `role` varchar(255) NOT NULL
     )""")
-    cursor.execute("""SELECT password FROM accounts WHERE email = '{}' AND username = '{}';""".format(str(email), str(username)))
+    cursor.execute("""SELECT password FROM accounts WHERE email = '{}';""".format(str(email), str(username)))
     if str(cursor.fetchall()).startswith('[]'):
-        cursor.execute("""insert into accounts (email, password, username, account_type) values (%s, %s, %s, %s)""", params=(email, password, username, 'Trial'))
+        cursor.execute("""insert into accounts (email, password, username, account_type, balance) values (%s, %s, %s, %s, 0)""", params=(email, password, username, 'Trial'))
         db_connection.commit()
         return 526
     else:
@@ -46,8 +46,8 @@ def get_role(email):
     cursor = db_connection.cursor()
     cursor.execute("select database();")
     database_name = cursor.fetchone()
-    cursor.execute("create database if not exists pm")
-    cursor.execute("use pm")
+    cursor.execute("create database if not exists testinggg")
+    cursor.execute("use testinggg")
     cursor.execute("""create table if not exists accounts (
         `email` varchar(255) not null,
         `username` varchar(255) not null,
@@ -56,8 +56,13 @@ def get_role(email):
         `account_type` varchar(255) NOT NULL,
         `role` varchar(255) NOT NULL
     )""")
-    cursor.execute("""SELECT role FROM accounts WHERE email = '{}';""".format(str(email)))
-    return str(cursor.fetchall()).split('[(\'')[1].split('\'')[0]
+    cursor.execute("""SELECT account_type FROM accounts WHERE email = '{}';""".format(str(email)))
+    f = str(cursor.fetchall())
+    if f == '[]':
+        return 'unknown'
+    else:
+        print(f)
+        return f.split('[(\'')[1].split('\',)')[0]
 
 def get_user(user):
     HOST = "localhost"
@@ -69,8 +74,8 @@ def get_user(user):
     cursor = db_connection.cursor()
     cursor.execute("select database();")
     database_name = cursor.fetchone()
-    cursor.execute("create database if not exists pm")
-    cursor.execute("use pm")
+    cursor.execute("create database if not exists testinggg")
+    cursor.execute("use testinggg")
     cursor.execute("""create table if not exists accounts (
         `email` varchar(255) not null,
         `username` varchar(255) not null,
@@ -100,8 +105,8 @@ def change_role(email, secret):
     cursor = db_connection.cursor()
     cursor.execute("select database();")
     database_name = cursor.fetchone()
-    cursor.execute("create database if not exists pm")
-    cursor.execute("use pm")
+    cursor.execute("create database if not exists testinggg")
+    cursor.execute("use testinggg")
     cursor.execute("""create table if not exists accounts (
         `email` varchar(255) not null,
         `username` varchar(255) not null,
@@ -136,8 +141,8 @@ def adminer_test(email, secret):
     cursor = db_connection.cursor()
     cursor.execute("select database();")
     database_name = cursor.fetchone()
-    cursor.execute("create database if not exists pm")
-    cursor.execute("use pm")
+    cursor.execute("create database if not exists testinggg")
+    cursor.execute("use testinggg")
     cursor.execute("""create table if not exists accounts (
         `email` varchar(255) not null,
         `username` varchar(255) not null,
@@ -158,3 +163,33 @@ def adminer_test(email, secret):
             cursor.execute("""UPDATE accounts SET role = 'Member' WHERE email = '{}';""".format(str(email)))
             db_connection.commit()
         return str(cursor.fetchall())
+
+
+def balance(email):
+    HOST = "localhost"
+    DATABASE = ""
+    USER = "root"
+    PASSWORD = ""
+
+    db_connection = mysql.connect(host=HOST, database=DATABASE, user=USER, password=PASSWORD)
+    cursor = db_connection.cursor()
+    cursor.execute("select database();")
+    database_name = cursor.fetchone()
+    cursor.execute("create database if not exists testinggg")
+    cursor.execute("use testinggg")
+    cursor.execute("""create table if not exists accounts (
+        `email` varchar(255) not null,
+        `username` varchar(255) not null,
+        `password` varchar(255) not null,
+        `balance` varchar(255) not null,
+        `account_type` char(255) NOT NULL,
+        `role` varchar(255) NOT NULL
+    )""")
+    cursor.execute("""SELECT balance FROM accounts WHERE email = '{}';""".format(str(email)))
+    f = str(cursor.fetchall())
+    if f == '[]':
+        return "unknown"
+    else:
+        return f.split('[(\'')[1].split('\',)')[0]
+
+
