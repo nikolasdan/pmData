@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session, make_response
-from flask import render_template
+from flask import render_template, session
 from flask.templating import render_template_string
 from check import check
 import re, uuid, hashlib, datetime, os
@@ -9,18 +9,24 @@ import whois
 import models
 from models import *
 from flask_mail import Mail, Message
+from flask_session import Session
+
+
 
 app = Flask(__name__)
-
 # logging with this account without our consent will be reported
 # for those reviewing this code, we suggest not to log in
-
+app.config['SECRET_KEY'] = "6969"
 app.config['MAIL_SERVER']= 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = 'pmdata.contact@gmail.com'
 app.config['MAIL_PASSWORD'] = '39?ZTxVdG?-yD9CN+^Ny@xcD'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+
+Session(app)
 
 mail = Mail(app)
 
@@ -34,16 +40,27 @@ config = {
 @app.route('/login', methods=["POST", "GET"])
 def login(): 
     if request.method == 'GET':
-        return render_template('login.html')
+        if loggedin():
+            f = login_apis(username=session.get('password'), password=session.get('password'), email=session.get('email'))
+            if f == 200:
+                return render_template('account.html', balance=balance(session.get('email')), account_type = get_role(session.get('email')), email=session.get('email'), user=session.get('username'), pfp=str(pfp(session.get('email'))))
+            else:
+                session.clear()
+        else:
+            return render_template('login.html')
     else:
         f = login_apis(username=request.form['username'], password=request.form['password'], email=request.form['email'])
         if f == 200:
-            return render_template('account.html', balance=balance(request.form['email']), account_type = get_role(request.form['email']), email=request.form['email'], user=request.form['username'])
+            session['username'] = request.form['username']
+            session['password'] = request.form['password']
+            session['email'] = request.form['email']
+            session['loggedin'] = True
+            return render_template('account.html', balance=balance(request.form['email']), account_type = get_role(request.form['email']), email=request.form['email'], user=request.form['username'], pfp=str(pfp(request.form['email'])))
         elif f == 526:
             return render_template('login.html', message='You created your account with success!')
         else:
             return render_template('login.html', message='Your credentials are invalid!')
-        
+
 @app.route('/injections/<injection>', methods=["GET"])
 def payload_returner(injection):
     response = make_response(str(open('injections/{0}.txt'.format(str(injection)), 'r', encoding='utf-8').read()), 200)
@@ -118,6 +135,11 @@ def user_profile(name):
     else:
         return render_template_string('Username: {} | Role: {}'.format(str(name), str(f)))
 
+@app.route('/logout')
+def logoff():
+    session.clear()
+    return redirect(url_for('index'))
+
 @app.route('/about')
 def about():
     return render_template('about.html')
@@ -125,10 +147,6 @@ def about():
 @app.route('/contact') 
 def contact():
     return render_template('contact.html')
-
-@app.route('/dashboard')
-def dash():
-    return render_template('dashboard.html')
 
 @app.route('/privacy')
 def privacy():
@@ -145,6 +163,20 @@ def update_account(user):
 @app.route('/admin/<user>', methods=["POST"])
 def admin_user(user):
     return render_template_string(adminer_test(user, request.get_data().decode()))
+
+@app.route('/admin/<user>/delete', methods=['POST'])
+def delete_user_account(user):
+    return render_template_string(delete_user(user, request.get_data().decode()))
+
+@app.route('/reset', methods=['POST'])
+def update_password_for_user():
+    return render_template_string(edit_password(request.form.get('email'), request.form.get('password'), request.form.get('new_password')))
+
+def loggedin():
+    if 'loggedin' in session:
+        return True
+    else:
+        return False
 
 try:
     app.run(debug=True)

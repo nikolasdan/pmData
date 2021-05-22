@@ -56,7 +56,7 @@
           <div class="account-settings">
             <div class="user-profile">
               <div class="user-avatar">
-                <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.CzXGij1NaAy5LLNUbvw5hwHaHa%26pid%3DApi&f=1" alt="user-avatar">
+                <img src="{{ pfp }}" alt="user-avatar">
               </div>
               <h5 class="user-name text-white">{{ user }}</h5>
               <h6 class="user-email text-white">{{ email }}</h6>
@@ -64,6 +64,9 @@
             <div class="about">
               <h5 class="mb-2 text-primary">Account balance</h5>
               <p class="text-white">$ {{ balance }}</p>
+            </div>
+            <div class="logout text-center" >
+              <button type="button" name="logout" class="btn btn-danger" onClick="window.location.href='/logout'">Logout</button>
             </div>
           </div>
         </div>

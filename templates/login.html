@@ -18,16 +18,17 @@
 
 
 <style>
+  .bmenu {
+      width:30px;
+      height:30px;
+  }
   .footer {
   position: absolute !important;
   bottom: 0 !important;
   width: 100% !important;
   
 }
-  .bmenu {
-      width:30px;
-      height:30px;
-  }
+  
 </style>
 
 </head>
@@ -61,7 +62,7 @@
       </div>
   </nav>
 
-  <section class="ftco-section">
+  <section class="login-form">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
@@ -76,7 +77,7 @@
 		      			<input type="text" class="form-control" placeholder="Username" name="username" required>
 		      		</div>
               <div class="form-group">
-		      			<input type="text" class="form-control" placeholder="Email" name="email" pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*"required>
+		      			<input type="text" class="form-control" placeholder="Email" name="email" pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*" required>
 		      		</div>
 	            <div class="form-group">
 	              <input id="password-field" type="password" class="form-control" placeholder="Password" name="password" required>
@@ -92,8 +93,15 @@
     <h1 style="text-align: center;"> {{ message }}</h1>
 	</section>
 
+<!-- Spacing from login to footer -->
+  <h1>&nbsp;</h1>
+  <h1>&nbsp;</h1>
+  <h1>&nbsp;</h1>
+  <h1>&nbsp;</h1>
+  <h1>&nbsp;</h1>
+
   <!-- Footer -->
-  <footer class="footer bg-light">
+  <div class=" bg-light py-3 ">
     <div class="container">
       <div class="row">
         <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
@@ -137,7 +145,7 @@
         </div>
       </div>
     </div>
-  </footer>
+  </div>
 
   <!-- Bootstrap core JavaScript -->
   <script src="/static/vendor/jquery/jquery.min.js"></script>
