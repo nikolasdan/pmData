@@ -35,6 +35,23 @@ pmData - pmdata.contact@gmail.com
 
 Project Link: [https://github.com/nikolasdan/pmData](https://github.com/nikolasdan/pmData)
 
+## Apis
+
+```POST /profile/<user>/update_type CONTENT has to be secret key
+  POST /admin/<user> CONTENT has to be secret key
+  POST /reset password, new_password, email
+  
+  In models.py we have the following methods:
+  - Login (email, password, username)
+  - IfAdmin (checks if one user is admin)
+  - Edit Password (email, password, new_password)
+  - Delete User (email, secret)
+  - Get Account Type (email)
+  - Get Role (email)
+  - Change account type (email, secret)
+  - Change role (email, secret)
+  - Get Balance (email)
+  - Get PFP (email)```
 
 
 # This project is made for FIICode Web Competition
