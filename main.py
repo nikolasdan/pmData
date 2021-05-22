@@ -172,6 +172,10 @@ def delete_user_account(user):
 def update_password_for_user():
     return render_template_string(edit_password(request.form.get('email'), request.form.get('password'), request.form.get('new_password')))
 
+@app.route('/404')
+def error():
+    return render_template('404.html')
+
 def loggedin():
     if 'loggedin' in session:
         return True
