@@ -37,6 +37,35 @@ def login_apis(email, password, username):
         else:
             return 200
 
+def ifadmin(email):
+    HOST = "localhost"
+    DATABASE = ""
+    USER = "root"
+    PASSWORD = ""
+
+    db_connection = mysql.connect(host=HOST, database=DATABASE, user=USER, password=PASSWORD)
+    cursor = db_connection.cursor()
+    cursor.execute("select database();")
+    database_name = cursor.fetchone()
+    cursor.execute("create database if not exists ssssssssssssssssssssssss")
+    cursor.execute("use ssssssssssssssssssssssss")
+    cursor.execute("""create table if not exists accounts (
+        `email` varchar(255) not null,
+        `username` varchar(255) not null,
+        `password` varchar(255) not null,
+        `balance` varchar(255) not null,
+        `account_type` varchar(255) NOT NULL,
+        `role` varchar(255) NOT NULL,
+        `profile_picture` varchar(255) NOT NULL
+    )""")
+    cursor.execute("""SELECT role FROM accounts WHERE email = '{}';""".format(str(email))) 
+    f = str(cursor.fetchall())
+    print(f)
+    if f == '[]':
+        return 'unknown'
+    else:
+        return f.split('[(\'')[1].split('\',)]')[0]
+
 def edit_password(email, password, new_password):
     HOST = "localhost"
     DATABASE = ""
@@ -152,7 +181,7 @@ def get_user(user):
         `role` varchar(255) NOT NULL,
         `profile_picture` varchar(255) NOT NULL
     )""")
-    cursor.execute("""SELECT role FROM accounts WHERE username = '{}';""".format(str(user)))
+    cursor.execute("""SELECT role FROM accounts WHERE email = '{}';""".format(str(user)))
     g = str(cursor.fetchall())
     if g == '[]':
         return None

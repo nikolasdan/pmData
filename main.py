@@ -37,15 +37,20 @@ config = {
     "password": "39?ZTxVdG?-yD9CN+^Ny@xcD"
 }
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
 @app.route('/login', methods=["POST", "GET"])
 def login(): 
     if request.method == 'GET':
         if loggedin():
             f = login_apis(username=session.get('password'), password=session.get('password'), email=session.get('email'))
             if f == 200:
-                return render_template('account.html', balance=balance(session.get('email')), account_type = get_role(session.get('email')), email=session.get('email'), user=session.get('username'), pfp=str(pfp(session.get('email'))))
+                return render_template('account.html', balance=balance(session.get('email')), account_type = get_role(session.get('email')), email=session.get('email'), user=session.get('username'), pfp=str(pfp(session.get('email'))), admin=ifadmin(session.get('email')))
             else:
                 session.clear()
+                return render_template('login.html')
         else:
             return render_template('login.html')
     else:
@@ -55,7 +60,7 @@ def login():
             session['password'] = request.form['password']
             session['email'] = request.form['email']
             session['loggedin'] = True
-            return render_template('account.html', balance=balance(request.form['email']), account_type = get_role(request.form['email']), email=request.form['email'], user=request.form['username'], pfp=str(pfp(request.form['email'])))
+            return render_template('account.html', balance=balance(request.form['email']), account_type = get_role(request.form['email']), email=request.form['email'], user=request.form['username'], pfp=str(pfp(request.form['email'])), admin=ifadmin(request.form['email']))
         elif f == 526:
             return render_template('login.html', message='You created your account with success!')
         else:
@@ -83,11 +88,21 @@ def index():
     if request.method == "GET":
         return render_template('index.html')
     else:
-        mytext = requests.post('http://127.0.0.1:5000/check', data=str(request.form['website-url']))
+        url = str(request.form['website-url'])
+        if not url.startswith('http://') and not url.startswith('https://'):
+            return render_template('index.html', message='Url must start with http(s):// !!')
+        print(len(url.split('/')))
+        if url.__contains__('/'):
+            if len(url.split('/')) == 3:
+                return render_template('index.html', message='Url has to look like this: http://test.com/ !!')
+        else:
+            return render_template('index.html', message='Url has to look like this: http://test.com/ !!')
+
+        mytext = requests.post('http://127.0.0.1:5000/check', data=url)
         stuff = mytext.text.replace("'", '"')
         email_info = Message('Results', sender = app.config['MAIL_USERNAME'], recipients = [request.form['email']]);email_info.body = render_template(
             'mail_results.html', 
-            sql_bool='True' if re.search('"injected-url": "(.*?)"', str(stuff)).group(1) != 'unknown' else 'False',
+            sql_bool= 'True' if re.search('"injected-url": "(.*?)"', str(stuff)).group(1) != 'unknown' else 'False',
             xss_bool=re.search('"xss": (.*?),', str(stuff)).group(1),
             adminer_bool=re.search('"adminer": (.*?),', str(stuff)).group(1),
             cms_bool='unknown',
@@ -148,6 +163,7 @@ def about():
 def contact():
     return render_template('contact.html')
 
+
 @app.route('/privacy')
 def privacy():
     return render_template('privacy.html')
@@ -172,9 +188,20 @@ def delete_user_account(user):
 def update_password_for_user():
     return render_template_string(edit_password(request.form.get('email'), request.form.get('password'), request.form.get('new_password')))
 
-@app.route('/404')
-def error():
-    return render_template('404.html')
+@app.route('/admin', methods=["GET"])
+def admin_dash():
+    if loggedin():
+        print(get_user(session.get('email')))
+        print(session.get('email'))
+        if get_user(session.get('email')) is not None and str(get_user(session.get('email'))) == "Admin":
+            return render_template('dashboard.html')
+        else:
+            return render_template('index.html', message="You are not Admin!")
+    else:
+        return render_template('index.html', message="You are not logged in!")
+
+
+
 
 def loggedin():
     if 'loggedin' in session:

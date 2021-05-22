@@ -35,8 +35,15 @@
           <a class="nav-link text-primary" href="/contact">Contact</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-primary" href="#">Account</a>
+          <a class="nav-link text-primary" href="/login">Account</a>
         </li>
+        {% block content %}
+        {% if admin == 'Admin' %}
+          <li class="nav-item">
+            <a class="nav-link text-primary" href="/admin">Admin</a>
+          </li>          
+        
+        {% endif %}{% endblock content %}
         <li class="nav-item px-5">
           <div class="custom-control custom-switch">
             <input type="checkbox" class="custom-control-input" id="darkSwitch">
@@ -88,8 +95,15 @@
     </div>
   </div>
   </div>
+<!-- Spacing from login to footer -->
+<h1>&nbsp;</h1>
+<h1>&nbsp;</h1>
+<h1>&nbsp;</h1>
+<h1>&nbsp;</h1>
+<h1>&nbsp;</h1>
+
 <!-- Footer -->
-<footer class="footer bg-light">
+<div class=" bg-light py-3 fixed-bottom">
   <div class="container">
     <div class="row">
       <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
@@ -107,10 +121,10 @@
           </li>
           <li class="list-inline-item">&sdot;</li>
           <li class="list-inline-item">
-              <a href="/privacy">Privacy Policy</a>
+            <a href="/privacy">Privacy Policy</a>
           </li>
-          </ul>
-          <p class="text-muted small mb-4 mb-lg-0">&copy; pmData 2021. All Rights Reserved.</p>
+        </ul>
+        <p class="text-muted small mb-4 mb-lg-0">&copy; pmData 2021. All Rights Reserved.</p>
       </div>
       <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
         <ul class="list-inline mb-0">
@@ -133,8 +147,7 @@
       </div>
     </div>
   </div>
-  </footer>
-<!-- End of Footer -->
+</div>
 
   <!-- Bootstrap core JavaScript -->
   <script src="/static/vendor/jquery/jquery.min.js"></script>

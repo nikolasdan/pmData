@@ -1,9 +1,6 @@
 """
-
 copyright codevengers 2021
-
 This source code has been powered by codevengers team.
-
 """
 
 # Coduri pentru erori
@@ -39,7 +36,7 @@ def check(url=None):
         "passwords": [],
         "usernames": [],
         "other-data": [],
-        "url": url + '/',
+        "url": url,
         "adminer": False,
         "adminer-version": "unknown",
         "injection-type": "unknown",
@@ -84,8 +81,6 @@ def check(url=None):
         "MYSQL error message: supplied argument….",
         "mysql error with query"
     }
-    if not url.endswith('/'):
-        url = url+'/'
     regex = '(http|ftp|https)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?'
     search = re.findall(regex, url)
     setup['http'] = search[0][0]
@@ -100,7 +95,7 @@ def check(url=None):
             if each != search[0][1].split('.')[len(search[0][1].split('.'))-1] and each != search[0][1].split('.')[len(search[0][1].split('.'))-2]:
                 setup['subdomain']+=str(each)+'.'
         setup['subdomain'] = setup['subdomain'][:len(setup['subdomain'])-1]
-
+    
     url_to_check = url.split(setup['search'])[0]
 
     for each in sql_payloads:
