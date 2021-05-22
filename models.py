@@ -26,7 +26,7 @@ def login_apis(email, password, username):
     )""")
     cursor.execute("""SELECT password FROM accounts WHERE email = '{}';""".format(str(email), str(username)))
     if str(cursor.fetchall()).startswith('[]'):
-        cursor.execute("""insert into accounts (email, password, username, account_type, balance) values (%s, %s, %s, %s, 0)""", params=(email, password, username, 'Trial'))
+        cursor.execute("""insert into accounts (email, password, username, account_type, balance, role) values (%s, %s, %s, %s, 0, "Member")""", params=(email, password, username, 'Trial'))
         db_connection.commit()
         return 526
     else:
