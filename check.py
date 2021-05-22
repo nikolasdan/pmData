@@ -39,7 +39,7 @@ def check(url=None):
         "passwords": [],
         "usernames": [],
         "other-data": [],
-        "url": url,
+        "url": url + '/',
         "adminer": False,
         "adminer-version": "unknown",
         "injection-type": "unknown",
@@ -84,7 +84,8 @@ def check(url=None):
         "MYSQL error message: supplied argument….",
         "mysql error with query"
     }
-
+    if not url.endswith('/'):
+        url = url+'/'
     regex = '(http|ftp|https)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?'
     search = re.findall(regex, url)
     setup['http'] = search[0][0]
