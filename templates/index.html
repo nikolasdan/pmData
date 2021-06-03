@@ -26,17 +26,23 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark">
+<<<<<<< HEAD
       <div class="navbar-brand p-2">
         <a href="/">
         <img src="/static/img/logo-w.svg" width="200" class="logo-w img-fluid" alt="logow">
         <img src="/static/img/logo-b.svg" width="200" class="logo-b img-fluid" alt="logob">
         </a>
       </div>
+=======
+    <a href="/">
+      <a class="navbar-brand"><img src="/static/img/logo1.svg" width="200" alt="logo"></a>
+    </a>
+>>>>>>> 13d50c8d5e6e420f2fe9448c1b270695e50cc3b4
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span><img src="static/img/bmenu.svg" class="bmenu" alt=""></span>
     </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ms-auto">
           <li class="nav-item">
             <a class="nav-link text-primary" href="/about">About</a>
           </li>
@@ -47,8 +53,8 @@
             <a class="nav-link text-primary" href="/login">Account</a>
           </li>
           <li class="nav-item px-5">
-            <div class="custom-control custom-switch">
-              <input type="checkbox" class="custom-control-input" id="darkSwitch">
+            <div class="form-check form-switch">
+              <input type="checkbox" class="form-check-input" id="darkSwitch" />
               <label class="custom-control-label" for="darkSwitch">Dark Mode</label>
             </div>
           </li>
@@ -65,8 +71,8 @@
         </div>
         <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
           <form action="{{ url_for('index') }}", method="post">
-            <div class="form-row justify-content-center">
-            <div class="col-12 col-md-9 mb-2 mb-md-0">
+            <div class="row justify-content-center">
+            <div class="col-12 col-md-9 mb-2 mb-md-0 ">
             <input class="form-control form-control-lg" type="text" name="website-url" placeholder="Enter your URL" id="website-url" required>
             </div>
           <div class="col-12 col-md-9 mb-2 mb-md-0 py-3">
